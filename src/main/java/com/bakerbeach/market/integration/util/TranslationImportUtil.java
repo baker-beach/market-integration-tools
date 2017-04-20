@@ -29,6 +29,7 @@ public class TranslationImportUtil {
 				message.setTag(map.get("tag"));
 				message.setType(map.get("type"));
 				
+				// TODO: use key list parameter
 				message.getMessages().put("de", map.get("de"));
 				message.getMessages().put("en", map.get("en"));
 				
