@@ -16,28 +16,38 @@ import com.bakerbeach.market.translation.api.model.I18NMessage;
 public class TranslationImportUtil {
 	protected static final Logger log = LoggerFactory.getLogger(TranslationImportUtil.class);
 
+	public static I18NMessage getTranslation(Map<String, String> map) {
+		try {
+			I18NMessageImpl message = new I18NMessageImpl();
+
+			for (Entry<String, String> e : map.entrySet()) {
+				if (StringUtils.equals("code", e.getKey())) {
+					message.setMessageKey(e.getValue());
+				} else if (StringUtils.equals("tag", e.getKey())) {
+					message.setTag(e.getValue());
+				} else if (StringUtils.equals("type", e.getKey())) {
+					message.setType(e.getValue());
+				} else if (StringUtils.isNotBlank(e.getKey()) && StringUtils.isNotBlank(e.getValue())) {
+					message.getMessages().put(e.getKey(), e.getValue());
+				}
+			}
+			
+			return message;
+		} catch (Exception e) {
+			log.error(ExceptionUtils.getMessage(e));
+		}
+		
+		return null;		
+	}
+	
+	
 	public static List<I18NMessage> getTranslations(List<Map<String, String>> list) {
 		List<I18NMessage> messages = new ArrayList<>();
 
 		for (Map<String, String> map : list) {
-			try {
-				I18NMessageImpl message = new I18NMessageImpl();
-
-				for (Entry<String, String> e : map.entrySet()) {
-					if (StringUtils.equals("code", e.getKey())) {
-						message.setMessageKey(e.getValue());
-					} else if (StringUtils.equals("tag", e.getKey())) {
-						message.setTag(e.getValue());
-					} else if (StringUtils.equals("type", e.getKey())) {
-						message.setType(e.getValue());
-					} else if (StringUtils.isNotBlank(e.getKey()) && StringUtils.isNotBlank(e.getValue())) {
-						message.getMessages().put(e.getKey(), e.getValue());
-					}
-
-					messages.add(message);
-				}
-			} catch (Exception e) {
-				log.error(ExceptionUtils.getMessage(e));
+			I18NMessage message = getTranslation(map);
+			if (message != null) {
+				messages.add(message);
 			}
 		}
 
