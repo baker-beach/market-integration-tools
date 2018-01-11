@@ -27,7 +27,7 @@ public class TranslationImportUtil {
 					message.setTag(e.getValue());
 				} else if (StringUtils.equals("type", e.getKey())) {
 					message.setType(e.getValue());
-				} else if (StringUtils.isNotBlank(e.getKey()) && StringUtils.isNotBlank(e.getValue())) {
+				} else if (StringUtils.isNotBlank(e.getKey()) && e.getValue() != null) {
 					message.getMessages().put(e.getKey(), e.getValue());
 				}
 			}
