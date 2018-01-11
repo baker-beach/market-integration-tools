@@ -10,7 +10,7 @@
 	<artifactId>market-integration-tools</artifactId>
 	<name>market-integration-tools</name>
 	<packaging>jar</packaging>
-	<version>1.0.1</version>
+	<version>3.0.0</version>
 	<properties>
 		<org.springframework.version>4.1.4.RELEASE</org.springframework.version>
 		<commons.lang.version>3.0.1</commons.lang.version>
@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>com.bakerbeach.market</groupId>
 			<artifactId>market-translation</artifactId>
-			<version>[3.0.0,3.1.0)</version>
+			<version>[3.1.0,3.2.0)</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
